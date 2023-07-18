@@ -2,7 +2,7 @@
   "name": "face-sample-dapp",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://haechi-labs.github.io/face-sample-dapp",
+  "homepage": "https://mdr-alt.github.io/face-experiment",
   "dependencies": {
     "@haechi-labs/face-sdk": "^1.10.6",
     "@haechi-labs/face-types": "^1.10.6",

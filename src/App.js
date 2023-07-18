@@ -15,16 +15,16 @@ import WalletConnect from './components/WalletConnect';
 function App() {
   return (
     <div className="App">
-      <GNB />
+      {/* <GNB /> */}
       <AccountInformation />
       <div className="wrapper">
         <ConnectNetwork />
         <LoginWithFace />
-        <WalletConnect />
+        {/* <WalletConnect />
         <TransactionPlatformCoin />
         <TransactionErc20 />
         <TransactionErc721 />
-        <TransactionContractCall />
+        <TransactionContractCall /> */}
         <SignMessage />
       </div>
     </div>

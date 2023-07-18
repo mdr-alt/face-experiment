@@ -1,4 +1,5 @@
 import {Face, Network} from '@haechi-labs/face-sdk';
+import { useEffect, useState } from 'react';
 import {useRecoilState} from 'recoil';
 
 import {resolveApiKey} from '../config/apiKey';
@@ -8,24 +9,38 @@ import Box from './common/Box';
 import Button from './common/Button';
 import Message from './common/Message';
 
-const networkList = [
-  Network.ETHEREUM,
-  Network.GOERLI,
-  Network.POLYGON,
-  Network.MUMBAI,
-  Network.BNB_SMART_CHAIN,
-  Network.BNB_SMART_CHAIN_TESTNET,
-  Network.KLAYTN,
-  Network.BAOBAB,
-  Network.BORA,
-  Network.BORA_TESTNET,
-];
+// const networkList = [
+  // Network.ETHEREUM,
+  // Network.GOERLI,
+  // Network.POLYGON,
+  // Network.MUMBAI,
+  // Network.BNB_SMART_CHAIN,
+  // Network.BNB_SMART_CHAIN_TESTNET,
+  // Network.KLAYTN,
+  // Network.BAOBAB,
+  // Network.BORA,
+  // Network.BORA_TESTNET,
+// ];
 
 const title = 'Connect Network';
 
 function ConnectNetwork() {
   const [face, setFace] = useRecoilState(faceAtom);
   const [, setNetwork] = useRecoilState(networkAtom);
+  const [init, setInit] = useState(false)
+
+  useEffect(() => {
+    if (!init) {
+      setInit(true)
+      console.log("connect to network")
+      try {
+        connectTo(Network.MUMBAI)
+      } catch(e) {
+        // For some reason the component gets loaded twice, just ignore
+        // the FW warning that it was already initialized
+      }
+    }
+  }, [])
 
   const connectTo = (network) => {
     setNetwork(network);
@@ -40,9 +55,10 @@ function ConnectNetwork() {
 
   if (face) {
     return (
-      <Box title={title}>
-        <Message type="info">Connected</Message>
-      </Box>
+      <></>
+      // <Box title={title}>
+      //   <Message type="info">Connected</Message>
+      // </Box>
     );
   }
 
@@ -74,13 +90,14 @@ function ConnectNetwork() {
   }
 
   return (
-    <Box title={title}>
-      {networkList.map((network) => (
-        <Button key={network} onClick={() => connectTo(network)}>
-          Connect to {resolveNetworkName(network)}
-        </Button>
-      ))}
-    </Box>
+    <></>
+    // <Box title={title}>
+    //   {networkList.map((network) => (
+    //     <Button key={network} onClick={() => connectTo(network)}>
+    //       Connect to {resolveNetworkName(network)}
+    //     </Button>
+    //   ))}
+    // </Box>
   );
 }
 
